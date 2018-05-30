@@ -1,5 +1,5 @@
 //Author: Deb Roy
-//Selection Sort
+//Bubble Sort
 
 #include <stdio.h>
 #include <malloc.h>
@@ -46,38 +46,40 @@ int* input()
   return arr;
 }
 
-int* selectSort(int* arr)//Sorting using minimum selection
+int* bubbleSort(int* arr)//Sorting using insertion at the right position
 {
-  int i,j,minIndex;
+  int i,j;
 
-  for(i=0;i<size-1;i++)//scan each position
+  for(i=0;i<size-1;i++)
   {
     printf("\n");
     display(arr);
     printf("\n");
-    minIndex=i;
-    for(j=i+1;j<size;j++)//find the Minimum number
-      {
-        if(arr[j]<arr[minIndex])
-          minIndex=j;
-      }
 
-    swap(&arr[minIndex],&arr[i]);//swap it with the current position in concern
+    for(j=0;j<size-i-1;j++)
+    {
+      if(arr[j]>arr[j+1])
+        swap(&arr[j],&arr[j+1]);
+    }
+    printf("\n");
+    display(arr);
+    printf("\n");
+
   }
   return arr;
 }
 
-int main()
+int main()//main Function
 {
   int* arr;
-  printf("\n*********Selection Sort*******");
+  printf("\n*********Bubble Sort*******");
 
   arr=input();
   printf("\nThe List\n");
   display(arr);
   printf("\nSorting...\n");
   printf("\nIterations");
-  arr=selectSort(arr);
+  arr=bubbleSort(arr);
   printf("\nSorted List\n");
   display(arr);
 
