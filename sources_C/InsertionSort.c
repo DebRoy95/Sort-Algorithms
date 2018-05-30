@@ -46,38 +46,44 @@ int* input()
   return arr;
 }
 
-int* selectSort(int* arr)//Sorting using minimum selection
+int* insertionSort(int* arr)//Sorting using insertion at the right position
 {
-  int i,j,minIndex;
+  int i,j,key;
 
-  for(i=0;i<size-1;i++)//scan each position
+  for(i=1;i<size;i++)
   {
     printf("\n");
     display(arr);
     printf("\n");
-    minIndex=i;
-    for(j=i+1;j<size;j++)//find the Minimum number
-      {
-        if(arr[j]<arr[minIndex])
-          minIndex=j;
-      }
 
-    swap(&arr[minIndex],&arr[i]);//swap it with the current position in concern
+    key=arr[i];
+    j=i-1;
+
+    while(j>=0 && arr[j]>key)
+    {
+      arr[j+1]=arr[j];
+      j--;
+    }
+    arr[j+1]=key;
   }
+  printf("\n");
+  display(arr);
+  printf("\n");
+
   return arr;
 }
 
-int main()
+int main()//main Function
 {
   int* arr;
-  printf("\n*********Selection Sort*******");
+  printf("\n*********Insertion Sort*******");
 
   arr=input();
   printf("\nThe List\n");
   display(arr);
   printf("\nSorting...\n");
   printf("\nIterations");
-  arr=selectSort(arr);
+  arr=insertionSort(arr);
   printf("\nSorted List\n");
   display(arr);
 
